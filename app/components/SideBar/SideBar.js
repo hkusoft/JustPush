@@ -6,13 +6,13 @@ class SideBar extends Component {
 
             <div className="pane pane-sm sidebar">
                 <nav className="nav-group">
-                    <span className="nav-group-item">
+                    <span className="nav-group-item" onClick={()=> console.log("OK")}>
                         <span className="icon icon-home"></span>
-                        connors
+                        Home
                     </span>
                     <span className="nav-group-item active">
-                        <span className="icon icon-light-up"></span>
-                        Photon
+                        <span className="icon icon-cog"></span>
+                        Settings
                     </span>
                 </nav>
             </div>
