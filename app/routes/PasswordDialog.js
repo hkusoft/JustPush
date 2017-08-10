@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Modal from 'react-modal';
-// const { electron } = require('electron') var ipc= electron.ipcRenderer;
+// import electron from 'electron';
+
+// const  ipc = electron.ipcRenderer;
 
 const customStyles = {
     content: {
@@ -34,14 +36,11 @@ class PasswordDialog extends Component {
 
     onOkClicked() {
         var password = this.passwordInput.value;
-        if (password === 'dch12345') {
+        if (password === 'dch') {
             this.setState({isOpen: false});
-            this.hide();
-            // ipc.send('OnCorrectPassword');
+            this.props.onCorrectPassword();
         } else {
-            // console.log("Incorrect password " , password);
             this.setState({isPasswordWrong: true});
-
         }
 
     }
@@ -70,7 +69,7 @@ class PasswordDialog extends Component {
 
                 <div>
                     <button
-                        className="uk-button uk-button-primary uk-width-1-2"
+                        className="uk-button uk-button-primary uk-width-1-2" type="submit"
                         onClick={_ => this.onOkClicked()}>OK</button>
                     <button
                         className="uk-button uk-button-secondary uk-width-1-2"

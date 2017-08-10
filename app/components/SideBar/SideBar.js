@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import SettingScreen from '../../routes/SettingScreen'
 import HomeScreen from '../../routes/HomeScreen'
 import PasswordDialog from '../../routes/PasswordDialog'
+// import electron from 'electron';
 
-// const { electron } = require('electron')
-// var ipc= electron.ipcRenderer;
+// const ipc= electron.ipcRenderer;
 // ipc.on('OnCorrectPassword', _ =>{
 //     console.log("Correct password");
 // });
@@ -27,15 +27,20 @@ class SideBar extends Component {
         ReactDOM.render(
             <PasswordDialog ref={(dlg) => {
             this.passwordDlg = dlg;
-        }}/>, document.getElementById("content"));
+        }} 
+        onCorrectPassword ={_ => this.switchToSettingScreen()}
+        />, document.getElementById("placeholder"));
 
         this.passwordDlg.show();
     }
 
     switchToSettingScreen() {
+        this.passwordDlg.hide();
         this.activeScreen = 'Settings';
+        var container =  document.getElementById("content");
+        // ReactDOM.unmountComponentAtNode(container);
         ReactDOM.render(
-            <SettingScreen/>, document.getElementById("content"));
+            <SettingScreen/>,container);
         this.forceUpdate();
     }
 
