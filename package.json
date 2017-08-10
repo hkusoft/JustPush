@@ -1,17 +1,13 @@
 {
     "name": "JustPush",
     "dependencies": {
-        "babel-exclude-ignore": "^1.0.0",
-        "babel-plugin-transform-decorators-legacy": "^1.3.4",
-        "babel-preset-es2015": "^6.24.1",
-        "babelify": "^7.3.0",
         "electron": "^1.7.5",
         "react": "^15.6.1",
         "react-dom": "^15.6.1"
     },
     "scripts": {
         "start": "electron .",
-        "watch": "watchify app/routes/Home.js -t babelify -o public/js/bundle.js --debug --verbose"
+        "watch": "watchify app/routes/Index.js -t babelify -o public/js/bundle.js --debug --verbose"
     },
     "main": "app/main.js",
     "version": "0.1.0",
@@ -21,6 +17,10 @@
     "devDependencies": {
         "babel-cli": "^6.24.1",
         "babel-preset-env": "^1.6.0",
-        "babel-preset-react": "^6.24.1"
+        "babel-preset-react": "^6.24.1",
+        "babel-exclude-ignore": "^1.0.0",
+        "babel-plugin-transform-decorators-legacy": "^1.3.4",
+        "babel-preset-es2015": "^6.24.1",
+        "babelify": "^7.3.0"
     }
 }

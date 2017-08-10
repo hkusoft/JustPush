@@ -13,14 +13,23 @@
   <div class="window">
     <!-- Your app's content goes inside .window-content -->
     <div class="window-content">
-      <div id="content"></div>
-      <script src="../public/js/bundle.js"></script>
-    </div>
+      <div class="pane-group">
+        <!-- sidebar -->
+        <div class="pane pane-sm sidebar" id="sidebar">
+        </div>
+        <!-- Right pane -->
+        <div class="pane" id="content">
+        </div>
+      </div>
 
-    <!-- Footer -->
-    <footer class="toolbar toolbar-footer">
-      <h1 class="title">@Copyright LaputaTech 2017 </h1>
-    </footer>
+    </div>
+     <!-- Footer -->
+      <footer class="toolbar toolbar-footer">
+        <h5 class="title">@Copyright LaputaTech 2017 </h5>
+      </footer>
+  </div>
+
+  <script src="../public/js/bundle.js"></script>
 </body>
 
 </html>
