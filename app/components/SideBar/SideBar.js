@@ -1,13 +1,19 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import SettingScreen from '../../routes/SettingScreen.js'
-import HomeScreen from '../../routes/HomeScreen.js'
+import SettingScreen from '../../routes/SettingScreen'
+import HomeScreen from '../../routes/HomeScreen'
+import PasswordDialog from '../../routes/PasswordDialog'
+
+// const { electron } = require('electron')
+// var ipc= electron.ipcRenderer;
+// ipc.on('OnCorrectPassword', _ =>{
+//     console.log("Correct password");
+// });
 
 class SideBar extends Component {
     constructor() {
         super();
         this.activeScreen = 'Home';
-
     }
 
     switchToHomeScreen() {
@@ -15,6 +21,15 @@ class SideBar extends Component {
         ReactDOM.render(
             <HomeScreen/>, document.getElementById("content"));
         this.forceUpdate();
+    }
+
+    openPasswordDialog() {
+        ReactDOM.render(
+            <PasswordDialog ref={(dlg) => {
+            this.passwordDlg = dlg;
+        }}/>, document.getElementById("content"));
+
+        this.passwordDlg.show();
     }
 
     switchToSettingScreen() {
@@ -41,9 +56,7 @@ class SideBar extends Component {
                     Home
                 </span>
                 {/* Settings */}
-                <span
-                    className={this.isActive('Settings')}
-                    onClick={_ => this.switchToSettingScreen()}>
+                <span className={this.isActive('Settings')} onClick={_ => this.openPasswordDialog()}>
                     <span className="icon icon-cog"></span>
                     Settings
                 </span>
