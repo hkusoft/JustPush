@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import Modal from 'react-modal';
-// import electron from 'electron';
-
-// const  ipc = electron.ipcRenderer;
+// import electron from 'electron'; const  ipc = electron.ipcRenderer;
 
 const customStyles = {
     content: {
@@ -19,10 +17,11 @@ class PasswordDialog extends Component {
         super(props);
         this.state = {
             isOpen: this.props.isOpen,
-            isPasswordWrong: false
+            isPasswordWrong: true
         }
     }
 
+    // componentDidMount() {     this.passwordInput.focus(); }
     show() {
         this.setState({isOpen: true, isPasswordWrong: false});
     }
@@ -37,12 +36,17 @@ class PasswordDialog extends Component {
     onOkClicked() {
         var password = this.passwordInput.value;
         if (password === 'dch') {
-            this.setState({isOpen: false});
-            this.props.onCorrectPassword();
+            this.hide();
+            this
+                .props
+                .onCorrectPassword();
         } else {
             this.setState({isPasswordWrong: true});
         }
+    }
 
+    onCancelClicked() {
+        this.hide();
     }
     // onAfterOpen={afterOpenFn} onRequestClose={requestCloseFn}
     render() {
@@ -57,23 +61,26 @@ class PasswordDialog extends Component {
                     className="form-control uk-margin-small"
                     type="password"
                     style={this.stretch}
+                    autoFocus
                     ref={(input) => {
                     this.passwordInput = input;
                 }}/>
 
                 <div>
-                    {/* {this.state.isPasswordWrong}? */}
-                    <h5 className="uk-text-danger">Incorrect password, please retry ...</h5>
-                    {/* : null */}
+                    {this.state.isPasswordWrong
+                        ? <h5 className="uk-text-danger">Incorrect password, please retry ...</h5>
+                        : null
+}
                 </div>
 
                 <div>
                     <button
-                        className="uk-button uk-button-primary uk-width-1-2" type="submit"
+                        className="uk-button uk-button-primary uk-width-1-2"
+                        type="submit"
                         onClick={_ => this.onOkClicked()}>OK</button>
                     <button
                         className="uk-button uk-button-secondary uk-width-1-2"
-                        onClick={_ => this.onOkClicked()}>Cancel</button>
+                        onClick={_ => this.onCancelClicked()}>Cancel</button>
                 </div>
             </Modal>
         );
